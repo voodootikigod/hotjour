@@ -10,12 +10,18 @@ class Application
     application :name => "HotJour" do |app|
       app.delegate = self
       window :frame => [100, 100, 500, 500], :title => "HotJour" do |win|
-        win << label(:text => "Hello from HotCocoa", :layout => {:start => false})
+        @table = table_view(
+          :columns => [ 
+          column(:id => :klass, :text => "Service"),
+          column(:id => :ancestors, :text => "Host") 
+          ]  )  
+        # put the table inside a scroll view 
+        win << scroll_view(:layout => {:expand => [:width, :height]}) do |scroll| 
+          scroll << @table 
+        end
         win.will_close { exit }
       end
     end
-    # browser = 
-    puts "hi"
   end
   
   # file/open
@@ -41,6 +47,11 @@ class Application
   # window/bring_all_to_front
   def on_bring_all_to_front(menu)
   end
+  
+  
+  
+  
+  
 end
 
 Application.new.start
