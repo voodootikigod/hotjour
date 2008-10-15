@@ -1,12 +1,12 @@
+require 'bonjour_watcher'
 require 'hotcocoa'
 
 # Replace the following code with your own hotcocoa code
 
 class Application
-
   include HotCocoa
-  
   def start
+	bw = BonjourWatcher.new.browse
     application :name => "HotJour" do |app|
       app.delegate = self
       window :frame => [100, 100, 500, 500], :title => "HotJour" do |win|
@@ -47,11 +47,9 @@ class Application
   # window/bring_all_to_front
   def on_bring_all_to_front(menu)
   end
-  
-  
-  
-  
-  
 end
 
+
+NSApplication.sharedApplication
 Application.new.start
+NSApp.run

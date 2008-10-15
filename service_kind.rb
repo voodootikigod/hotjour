@@ -5,21 +5,20 @@ class ServiceKind
 	attr_accessor :children
 	
 	def leaf; false end
-	
 	def self.service_lookup
-	  @service_lookup ||= {}	    
-  end
+		@service_lookup ||= {}	    
+	end
 	
 	def initialize(name, clazz)
-    # super
-    puts "service kind #{name} with #{clazz}"
-    self.name  = name
-    self.klass = clazz
-    self.children = []
-    self.class.service_lookup[name] = self
-    @jours = {}
-	  self
-  end
+		# super
+		puts "service kind #{name} with #{clazz}"
+		self.name  = name
+		self.klass = clazz
+		self.children = []
+		self.class.service_lookup[name] = self
+		@jours = {}
+		self
+	end
   
   def text
     begin
@@ -30,11 +29,11 @@ class ServiceKind
   end
   
   def service_key(service)
-	  service.name + service.oc_type
+	  service.name + service.type()
 	end
 	
 	def self.service_basename(service)
-	  service.oc_type[/_([^\.]+)\._tcp/,1]
+	  service.type[/_([^\.]+)\._tcp/,1]
   end
   
   def service_type
@@ -46,17 +45,21 @@ class ServiceKind
   end
   
   def self.found(service)
-    puts "found service #{service.oc_type}"
+    puts "found service #{service.name} #{service.type}"
     
     if srv = service_lookup[service_basename(service)]
       srv.found(service)
     end
   end
   
+  def self.create_service net_service
+	
+  end
+  
   def found(service)
     puts "lets go"
 
-    if jour = Jour.create_service(service)
+    if jour = klass.newWithService(service)
       service.delegate = jour
       service.resolveWithTimeout(60)
 

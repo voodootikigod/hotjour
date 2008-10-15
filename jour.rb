@@ -8,12 +8,9 @@ module Jour
     end
   end
   
-  def create_service(service)
-    super
-    puts "starting #{self.class} with #{service.oc_type}"
-    @service = service
-    setup if respond_to?(:setup)
-    self
+  def setService(service)
+	@service = service
+	setup if respond_to?(:setup)
   end
   
   module ClassMethods
@@ -21,7 +18,13 @@ module Jour
       @service_name = name if name
       @service_name
     end
-    
+	def newWithService(service)
+		obj = self.new
+		puts "starting #{self.class} with #{service.type}"
+		obj.setService(service)
+		return obj
+	end
+
     def nib_name(nib_name=nil)
       self.nib_path NSBundle.mainBundle.pathForResource(nib_name, :ofType=>'nib')
     end
