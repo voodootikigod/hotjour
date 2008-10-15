@@ -5,8 +5,6 @@ task :build do
   ApplicationBuilder.build :file => "config/build.yml"
 end
 
-
-
 task :run => [:build] do
   require 'yaml'
   app_name = YAML.load(File.read("config/build.yml"))[:name]

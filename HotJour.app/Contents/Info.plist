@@ -3,23 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
-	<string>English</string>
+ <string>English</string>
+ <key>CFBundleIconFile</key>
+ <string>HotJour.icns</string>
 	<key>CFBundleExecutable</key>
-	<string>hotjour</string>
+	<string>HotJour</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.iterativedesigns.hotjour</string>
+	<string>com.yourcompany.HotJour</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>hotjour</string>
+	<string>HotJour</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
-	<key>NSMainNibFile</key>
-	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 </dict>

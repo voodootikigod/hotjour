@@ -9,15 +9,15 @@
 /* Begin PBXBuildFile section */
 		4DE339F70D74FCDD00ADB6EE /* rb_main.rb in Resources */ = {isa = PBXBuildFile; fileRef = 4DE339F60D74FCDD00ADB6EE /* rb_main.rb */; };
 		4DE3BE140D8651D900ECA448 /* MacRuby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DE3BE130D8651D900ECA448 /* MacRuby.framework */; };
-		5B3AD7D60EA623F600723350 /* bonjour_watcher.rb in Resources */ = {isa = PBXBuildFile; fileRef = 5B3AD7D50EA623F600723350 /* bonjour_watcher.rb */; };
-		5B3AD7DF0EA6243000723350 /* app_jour.rb in Resources */ = {isa = PBXBuildFile; fileRef = 5B3AD7D70EA6243000723350 /* app_jour.rb */; };
-		5B3AD7E00EA6243000723350 /* application.rb in Resources */ = {isa = PBXBuildFile; fileRef = 5B3AD7D80EA6243000723350 /* application.rb */; };
-		5B3AD7E10EA6243000723350 /* gem_jour.rb in Resources */ = {isa = PBXBuildFile; fileRef = 5B3AD7D90EA6243000723350 /* gem_jour.rb */; };
-		5B3AD7E20EA6243000723350 /* git_jour.rb in Resources */ = {isa = PBXBuildFile; fileRef = 5B3AD7DA0EA6243000723350 /* git_jour.rb */; };
-		5B3AD7E30EA6243000723350 /* jour.rb in Resources */ = {isa = PBXBuildFile; fileRef = 5B3AD7DB0EA6243000723350 /* jour.rb */; };
 		5B3AD7E40EA6243000723350 /* menu.rb in Resources */ = {isa = PBXBuildFile; fileRef = 5B3AD7DC0EA6243000723350 /* menu.rb */; };
-		5B3AD7E50EA6243000723350 /* paste_jour.rb in Resources */ = {isa = PBXBuildFile; fileRef = 5B3AD7DD0EA6243000723350 /* paste_jour.rb */; };
-		5B3AD7E60EA6243000723350 /* service_kind.rb in Resources */ = {isa = PBXBuildFile; fileRef = 5B3AD7DE0EA6243000723350 /* service_kind.rb */; };
+		5BED13FF0EA6A599003D6D3C /* app_jour.rb in Resources */ = {isa = PBXBuildFile; fileRef = 5BED13F70EA6A598003D6D3C /* app_jour.rb */; };
+		5BED14000EA6A599003D6D3C /* application.rb in Resources */ = {isa = PBXBuildFile; fileRef = 5BED13F80EA6A599003D6D3C /* application.rb */; };
+		5BED14010EA6A599003D6D3C /* bonjour_watcher.rb in Resources */ = {isa = PBXBuildFile; fileRef = 5BED13F90EA6A599003D6D3C /* bonjour_watcher.rb */; };
+		5BED14020EA6A599003D6D3C /* gem_jour.rb in Resources */ = {isa = PBXBuildFile; fileRef = 5BED13FA0EA6A599003D6D3C /* gem_jour.rb */; };
+		5BED14030EA6A599003D6D3C /* git_jour.rb in Resources */ = {isa = PBXBuildFile; fileRef = 5BED13FB0EA6A599003D6D3C /* git_jour.rb */; };
+		5BED14040EA6A599003D6D3C /* jour.rb in Resources */ = {isa = PBXBuildFile; fileRef = 5BED13FC0EA6A599003D6D3C /* jour.rb */; };
+		5BED14050EA6A599003D6D3C /* paste_jour.rb in Resources */ = {isa = PBXBuildFile; fileRef = 5BED13FD0EA6A599003D6D3C /* paste_jour.rb */; };
+		5BED14060EA6A599003D6D3C /* service_kind.rb in Resources */ = {isa = PBXBuildFile; fileRef = 5BED13FE0EA6A599003D6D3C /* service_kind.rb */; };
 		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
@@ -34,15 +34,15 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		4DE339F60D74FCDD00ADB6EE /* rb_main.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = rb_main.rb; sourceTree = "<group>"; };
 		4DE3BE130D8651D900ECA448 /* MacRuby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MacRuby.framework; path = /Library/Frameworks/MacRuby.framework; sourceTree = "<absolute>"; };
-		5B3AD7D50EA623F600723350 /* bonjour_watcher.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = bonjour_watcher.rb; sourceTree = "<group>"; };
-		5B3AD7D70EA6243000723350 /* app_jour.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = app_jour.rb; sourceTree = "<group>"; };
-		5B3AD7D80EA6243000723350 /* application.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = application.rb; sourceTree = "<group>"; };
-		5B3AD7D90EA6243000723350 /* gem_jour.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = gem_jour.rb; sourceTree = "<group>"; };
-		5B3AD7DA0EA6243000723350 /* git_jour.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = git_jour.rb; sourceTree = "<group>"; };
-		5B3AD7DB0EA6243000723350 /* jour.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = jour.rb; sourceTree = "<group>"; };
 		5B3AD7DC0EA6243000723350 /* menu.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = menu.rb; sourceTree = "<group>"; };
-		5B3AD7DD0EA6243000723350 /* paste_jour.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = paste_jour.rb; sourceTree = "<group>"; };
-		5B3AD7DE0EA6243000723350 /* service_kind.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = service_kind.rb; sourceTree = "<group>"; };
+		5BED13F70EA6A598003D6D3C /* app_jour.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = app_jour.rb; path = lib/app_jour.rb; sourceTree = "<group>"; };
+		5BED13F80EA6A599003D6D3C /* application.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = application.rb; path = lib/application.rb; sourceTree = "<group>"; };
+		5BED13F90EA6A599003D6D3C /* bonjour_watcher.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = bonjour_watcher.rb; path = lib/bonjour_watcher.rb; sourceTree = "<group>"; };
+		5BED13FA0EA6A599003D6D3C /* gem_jour.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = gem_jour.rb; path = lib/gem_jour.rb; sourceTree = "<group>"; };
+		5BED13FB0EA6A599003D6D3C /* git_jour.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = git_jour.rb; path = lib/git_jour.rb; sourceTree = "<group>"; };
+		5BED13FC0EA6A599003D6D3C /* jour.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = jour.rb; path = lib/jour.rb; sourceTree = "<group>"; };
+		5BED13FD0EA6A599003D6D3C /* paste_jour.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = paste_jour.rb; path = lib/paste_jour.rb; sourceTree = "<group>"; };
+		5BED13FE0EA6A599003D6D3C /* service_kind.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = service_kind.rb; path = lib/service_kind.rb; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* hotjour.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hotjour.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -63,15 +63,15 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				5B3AD7D70EA6243000723350 /* app_jour.rb */,
-				5B3AD7D80EA6243000723350 /* application.rb */,
-				5B3AD7D90EA6243000723350 /* gem_jour.rb */,
-				5B3AD7DA0EA6243000723350 /* git_jour.rb */,
-				5B3AD7DB0EA6243000723350 /* jour.rb */,
+				5BED13F70EA6A598003D6D3C /* app_jour.rb */,
+				5BED13F80EA6A599003D6D3C /* application.rb */,
+				5BED13F90EA6A599003D6D3C /* bonjour_watcher.rb */,
+				5BED13FA0EA6A599003D6D3C /* gem_jour.rb */,
+				5BED13FB0EA6A599003D6D3C /* git_jour.rb */,
+				5BED13FC0EA6A599003D6D3C /* jour.rb */,
+				5BED13FD0EA6A599003D6D3C /* paste_jour.rb */,
+				5BED13FE0EA6A599003D6D3C /* service_kind.rb */,
 				5B3AD7DC0EA6243000723350 /* menu.rb */,
-				5B3AD7DD0EA6243000723350 /* paste_jour.rb */,
-				5B3AD7DE0EA6243000723350 /* service_kind.rb */,
-				5B3AD7D50EA623F600723350 /* bonjour_watcher.rb */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -189,15 +189,15 @@
 				8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */,
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				4DE339F70D74FCDD00ADB6EE /* rb_main.rb in Resources */,
-				5B3AD7D60EA623F600723350 /* bonjour_watcher.rb in Resources */,
-				5B3AD7DF0EA6243000723350 /* app_jour.rb in Resources */,
-				5B3AD7E00EA6243000723350 /* application.rb in Resources */,
-				5B3AD7E10EA6243000723350 /* gem_jour.rb in Resources */,
-				5B3AD7E20EA6243000723350 /* git_jour.rb in Resources */,
-				5B3AD7E30EA6243000723350 /* jour.rb in Resources */,
 				5B3AD7E40EA6243000723350 /* menu.rb in Resources */,
-				5B3AD7E50EA6243000723350 /* paste_jour.rb in Resources */,
-				5B3AD7E60EA6243000723350 /* service_kind.rb in Resources */,
+				5BED13FF0EA6A599003D6D3C /* app_jour.rb in Resources */,
+				5BED14000EA6A599003D6D3C /* application.rb in Resources */,
+				5BED14010EA6A599003D6D3C /* bonjour_watcher.rb in Resources */,
+				5BED14020EA6A599003D6D3C /* gem_jour.rb in Resources */,
+				5BED14030EA6A599003D6D3C /* git_jour.rb in Resources */,
+				5BED14040EA6A599003D6D3C /* jour.rb in Resources */,
+				5BED14050EA6A599003D6D3C /* paste_jour.rb in Resources */,
+				5BED14060EA6A599003D6D3C /* service_kind.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

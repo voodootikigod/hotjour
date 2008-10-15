@@ -1,0 +1,7 @@
+name: HotJour
+load: lib/application.rb
+secure: true
+version: "1.0"
+icon: resources/HotJour.icns
+sources: 
+  - lib/**/*.rb

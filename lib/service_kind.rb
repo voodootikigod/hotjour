@@ -52,10 +52,6 @@ class ServiceKind
     end
   end
   
-  def self.create_service net_service
-	
-  end
-  
   def found(service)
     puts "lets go"
 

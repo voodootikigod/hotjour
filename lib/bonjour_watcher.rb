@@ -15,7 +15,6 @@ class BonjourWatcher
 	# 
 	def initialize
 		super
-		puts 'here'
 		self.servicekinds  = []
 		self.status = ''
 		setup_known_services
@@ -33,8 +32,9 @@ class BonjourWatcher
 		@servicekinds << srv
 	end
 
-	def browse
+	def browse(data_table)
 		@browsers = []
+		@data_table = data_table
 		servicekinds.each do |srv|
 			browser = NSNetServiceBrowser.new
 			browser.delegate = self

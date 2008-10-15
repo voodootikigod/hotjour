@@ -1,0 +1,342 @@
+{"/lib/application.rb" require 'bonjour_watcher'
+require 'hotcocoa'
+
+# Replace the following code with your own hotcocoa code
+
+class Application
+  include HotCocoa
+  
+  def start
+	@table_data = []
+	bw = BonjourWatcher.new.browse(@table_data)
+    application :name => "HotJour" do |app|
+      app.delegate = self
+      window :frame => [100, 100, 500, 500], :title => "HotJour" do |win|
+        @table = table_view(
+          :columns => [ 
+          column(:id => :service, :text => "Service"),
+          column(:id => :host, :text => "Host") 
+          ]  )  
+        # put the table inside a scroll view 
+        win << scroll_view(:layout => {:expand => [:width, :height]}) do |scroll| 
+          scroll << @table 
+        end
+
+        win.will_close { exit }
+      end
+    end
+  end
+  
+  # file/open
+  def on_open(menu)
+  end
+  
+  # file/new 
+  def on_new(menu)
+  end
+  
+  # help menu item
+  def on_help(menu)
+  end
+  
+  # This is commented out, so the minimize menu item is disabled
+  #def on_minimize(menu)
+  #end
+  
+  # window/zoom
+  def on_zoom(menu)
+  end
+  
+  # window/bring_all_to_front
+  def on_bring_all_to_front(menu)
+  end
+end
+
+
+NSApplication.sharedApplication
+Application.new.start
+NSApp.run"/lib/bonjour_watcher.rb"ñrequire 'service_kind'
+require 'gem_jour'
+require 'git_jour'
+require 'app_jour'
+require 'paste_jour'
+
+
+class BonjourWatcher 
+	# 
+	attr_accessor :servicekinds
+	attr_accessor :status
+	# 
+	# ib_outlet :detail_view
+	# ib_outlet :outline_view
+	# 
+	def initialize
+		super
+		self.servicekinds  = []
+		self.status = ''
+		setup_known_services
+		load_rc
+		self
+	end
+
+	def servicekinds
+		@servicekinds
+	end
+
+
+	def service(name,klazz)    
+		srv = ServiceKind.new(name, klazz)
+		@servicekinds << srv
+	end
+
+	def browse(data_table)
+		@browsers = []
+		@data_table = data_table
+		servicekinds.each do |srv|
+			browser = NSNetServiceBrowser.new
+			browser.delegate = self
+			browser.searchForServicesOfType(srv.service_type, inDomain:"")
+			@browsers << browser
+		end
+	end
+
+	def netServiceBrowserWillSearch(ns)
+		puts "Let's see whats out there..."
+	end
+
+	def netServiceBrowser(nsb, didNotSearch:errorDict)
+		puts "We hit a wall: #{errorDict.to_ruby.inspect}"
+	end
+
+	def netServiceBrowser(nsb, didFindService:service, moreComing:more)
+		puts "Found service."
+		ServiceKind.found(service)
+	end
+
+	def netServiceBrowser(nsb,didRemoveService:service,moreComing:more)
+		puts "Lost service #{service.name}"
+		ServiceKind.lost(service)
+	end
+
+
+protected
+	def setup_known_services
+		service('pastejour', PasteJour)
+		service('http'     , AppJour  )
+		service('git'      , GitJour  )
+		service('rubygems' , GemJour  )
+	end
+
+
+	def load_rc
+		rcfile = "#{ENV['HOME']}/.jourrc"
+		if File.exist?(rcfile)
+			instance_eval(File.read(rcfile))
+		end
+	end
+end"/lib/jour.rb"C
+module Jour
+  
+  def self.included(base)
+    base.extend ClassMethods
+    base.class_eval do
+      attr_accessor :text
+    end
+  end
+  
+  def setService(service)
+	@service = service
+	setup if respond_to?(:setup)
+  end
+  
+  module ClassMethods
+    def service_name(name=nil)
+      @service_name = name if name
+      @service_name
+    end
+	def newWithService(service)
+		obj = self.new
+		puts "starting #{self.class} with #{service.type}"
+		obj.setService(service)
+		return obj
+	end
+
+    def nib_name(nib_name=nil)
+      self.nib_path NSBundle.mainBundle.pathForResource(nib_name, :ofType=>'nib')
+    end
+    
+    def nib_path(nib_path=nil)
+      if nib_path
+        @nib_path = nib_path
+      else
+        @nib_path
+      end
+    end
+    
+  end
+  
+  def view?
+    begin
+      view
+      true
+    rescue
+      false
+    end
+  end
+  
+  def view
+    unless @view
+      raise "no nib path set... set the class nib path first" unless self.class.nib_path
+      
+      @vc = NSViewController.alloc.initWithNibName(nil,:bundle=>nil)
+      nib = NSNib.alloc.initWithContentsOfURL(NSURL.fileURLWithPath(self.class.nib_path))
+      
+      nib.instantiateNibWithOwner_topLevelObjects(@vc, nil)
+      
+      puts "nib... #{@vc}"
+      
+      @vc.representedObject = self
+      @view = @vc.view
+    end
+    
+    @view
+  end
+  
+  def children; [] end
+  def leaf; true end
+  
+  # service resolution
+	def netServiceDidResolveAddress(service)
+	  resolved! if respond_to?(:resolved!)
+  end
+  
+  def netService_didNotResolve(service,reason)
+    puts "netService_didNotResolve #{service_key(service)}"
+    p reason
+  end
+end
+"/lib/service_kind.rb"Sclass ServiceKind
+  
+	attr_accessor :name
+	attr_accessor :klass
+	attr_accessor :children
+	
+	def leaf; false end
+	def self.service_lookup
+		@service_lookup ||= {}	    
+	end
+	
+	def initialize(name, clazz)
+		# super
+		puts "service kind #{name} with #{clazz}"
+		self.name  = name
+		self.klass = clazz
+		self.children = []
+		self.class.service_lookup[name] = self
+		@jours = {}
+		self
+	end
+  
+  def text
+    begin
+      @klass.service_name
+    rescue
+      @name
+    end.upcase
+  end
+  
+  def service_key(service)
+	  service.name + service.type()
+	end
+	
+	def self.service_basename(service)
+	  service.type[/_([^\.]+)\._tcp/,1]
+  end
+  
+  def service_type
+    "_#{name}._tcp"
+  end
+  
+  def self.resolve_path(sc_index,jour_index)
+    
+  end
+  
+  def self.found(service)
+    puts "found service #{service.name} #{service.type}"
+    
+    if srv = service_lookup[service_basename(service)]
+      srv.found(service)
+    end
+  end
+  
+  def found(service)
+    puts "lets go"
+
+    if jour = klass.newWithService(service)
+      service.delegate = jour
+      service.resolveWithTimeout(60)
+
+      @children << jour
+      @jours[service_key(service)] = jour
+    end
+  end
+  
+  def self.lost(service)
+    srv.lost(service) if srv = service_lookup[service_basename(service)]
+  end
+  
+  def lost(service)
+    @children.delete(jour) if jour = @jours[service_key(service)]
+  end
+end
+"/lib/app_jour.rb"krequire 'jour'
+
+class AppJour 
+  include Jour
+  
+  service_name 'app'
+  nib_name 'AppJour'
+  
+  attr_accessor :url
+  
+  def setup
+    @text = @service.name
+    @url = 'resolving'
+  end
+  
+  def resolved!
+    self.url = "http://#{@service.hostName}:#{@service.port}"
+  end
+  
+  def open(sender)
+    return unless self.url
+    system "open '#{self.url}'"
+  end
+end
+"/lib/gem_jour.rb"Ørequire 'jour'
+
+class GemJour
+  include Jour
+  
+  service_name 'gem'
+  
+  def setup
+    @text = @service.name
+  end
+
+  # def resolved!
+    # system "gem list -r --source=http://#{host.host}:#{host.port}"
+  # end
+end
+"/lib/git_jour.rb"|require 'jour'
+
+class GitJour
+  include Jour
+
+  service_name 'git'
+  
+  def setup
+    @text = @service.name
+  end
+
+end
