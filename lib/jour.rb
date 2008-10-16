@@ -13,6 +13,10 @@ module Jour
 	setup if respond_to?(:setup)
   end
   
+  def service
+	@service
+  end
+  
   module ClassMethods
     def service_name(name=nil)
       @service_name = name if name
@@ -71,11 +75,12 @@ module Jour
   
   # service resolution
 	def netServiceDidResolveAddress(service)
-	  resolved! if respond_to?(:resolved!)
-  end
-  
-  def netService_didNotResolve(service,reason)
-    puts "netService_didNotResolve #{service_key(service)}"
-    p reason
-  end
+		puts "resolved address"
+		resolved! if respond_to?(:resolved!)
+	end
+
+	def netService_didNotResolve(service,reason)
+		puts "netService_didNotResolve #{service_key(service)}"
+		p reason
+	end
 end

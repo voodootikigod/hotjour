@@ -9,11 +9,12 @@ class BonjourWatcher
 	# 
 	attr_accessor :servicekinds
 	attr_accessor :status
+	attr_accessor :announcer
 	# 
 	# ib_outlet :detail_view
 	# ib_outlet :outline_view
 	# 
-	def initialize
+	def initialize()
 		super
 		self.servicekinds  = []
 		self.status = ''
@@ -32,19 +33,23 @@ class BonjourWatcher
 		@servicekinds << srv
 	end
 
-	def browse(data_table)
+	def browse(&b)
+		self.announcer = b
 		@browsers = []
-		@data_table = data_table
 		servicekinds.each do |srv|
 			browser = NSNetServiceBrowser.new
 			browser.delegate = self
 			browser.searchForServicesOfType(srv.service_type, inDomain:"")
 			@browsers << browser
 		end
+		return self
+	end
+
+	def refresh_listing
+		self.announcer.call(self.found_services)
 	end
 
 	def netServiceBrowserWillSearch(ns)
-		puts "Let's see whats out there..."
 	end
 
 	def netServiceBrowser(nsb, didNotSearch:errorDict)
@@ -54,11 +59,23 @@ class BonjourWatcher
 	def netServiceBrowser(nsb, didFindService:service, moreComing:more)
 		puts "Found service."
 		ServiceKind.found(service)
+		refresh_listing
 	end
 
 	def netServiceBrowser(nsb,didRemoveService:service,moreComing:more)
 		puts "Lost service #{service.name}"
 		ServiceKind.lost(service)
+		self.announcer.call(self.found_services)
+	end
+
+
+	def found_services
+		a = self.servicekinds.collect{|srv| 
+			srv.children.collect{|child|
+				{:name=>child.service.name, :host=>child.service.hostName, :service=>srv.name} 
+			}
+		}.flatten
+		return a
 	end
 
 

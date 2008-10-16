@@ -53,8 +53,6 @@ class ServiceKind
   end
   
   def found(service)
-    puts "lets go"
-
     if jour = klass.newWithService(service)
       service.delegate = jour
       service.resolveWithTimeout(60)

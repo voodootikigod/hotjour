@@ -7,18 +7,21 @@ class Application
   include HotCocoa
   
   def start
-	@table_data = []
-	bw = BonjourWatcher.new.browse(@table_data)
+	@bonjour_watcher = BonjourWatcher.new.browse{|service_listing| @table.data=service_listing }
     application :name => "HotJour" do |app|
       app.delegate = self
       window :frame => [100, 100, 500, 500], :title => "HotJour" do |win|
         @table = table_view(
           :columns => [ 
           column(:id => :service, :text => "Service"),
+          column(:id => :name, :text => "Name"),
           column(:id => :host, :text => "Host") 
           ]  )  
         # put the table inside a scroll view 
-        win << scroll_view(:layout => {:expand => [:width, :height]}) do |scroll| 
+		win << button(:title => "Refresh", :bezel => :regular_square).on_action { 
+			@bonjour_watcher.refresh_listing
+		}
+		win << scroll_view(:layout => {:expand => [:width, :height]}) do |scroll| 
           scroll << @table 
         end
 

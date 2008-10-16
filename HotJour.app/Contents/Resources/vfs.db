@@ -1,4 +1,4 @@
-{"/lib/application.rb" require 'bonjour_watcher'
+{"/lib/application.rb" require 'bonjour_watcher'
 require 'hotcocoa'
 
 # Replace the following code with your own hotcocoa code
@@ -215,6 +215,28 @@ module Jour
     p reason
   end
 end
+"/lib/paste_jour.rb"grequire 'jour'
+
+class PasteJour
+  include Jour
+  service_name 'paste'
+  nib_name 'PasteJour'
+
+  attr_accessor :pasted
+
+  def setup
+    (from, to) = *@service.name.split('-')
+
+    @text = "from #{from}"
+    @text << " to #{to}" if to
+  end
+
+  def paste(sender)
+    # self.pasted = ` '#{@service.name}'`
+    system("/usr/bin/env pastejour | pbcopy")
+  end
+end
+
 "/lib/service_kind.rb"Sclass ServiceKind
   
 	attr_accessor :name
